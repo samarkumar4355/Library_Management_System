@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+// Styles for this form are in pages/Login.css
 import React, { useState } from 'react';
 import './LoginForm.css';
 

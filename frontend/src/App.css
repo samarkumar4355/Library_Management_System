@@ -1,11 +1,20 @@
 .app-container {
-  width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.app-container > h1 {
-  font-size: 26px;
-  font-weight: 600;
-  margin: 20px 0 10px 0;
-  color: var(--text-h);
+/* main grows so the footer always sits at the bottom of the screen */
+.app-main {
+  flex: 1;
+  animation: fadeUp 0.35s ease-out;
+}
+
+.app-footer {
+  padding: 28px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-light);
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
 }

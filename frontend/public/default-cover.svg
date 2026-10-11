@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="50%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#4338ca" />
+    </linearGradient>
+    <linearGradient id="lotusGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbcfe8" />
+      <stop offset="100%" stop-color="#e0e7ff" />
+    </linearGradient>
+  </defs>
+
+  <!-- Book Base Background -->
+  <rect width="300" height="420" rx="12" fill="url(#bgGrad)" />
+
+  <!-- Spine Crease Shadow -->
+  <rect x="0" y="0" width="22" height="420" rx="4" fill="#0f172a" opacity="0.35" />
+  <line x1="22" y1="0" x2="22" y2="420" stroke="#818cf8" stroke-width="1.5" opacity="0.4" />
+
+  <!-- Subtle Inner Border -->
+  <rect x="36" y="24" width="236" height="372" rx="8" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.5" />
+
+  <!-- Decorative Lotus Icon in Center -->
+  <g transform="translate(110, 140) scale(0.8)">
+    <path d="M50 18 C46 38 46 62 50 78 C54 62 54 38 50 18 Z" fill="url(#lotusGrad)" opacity="0.95" />
+    <path d="M50 78 C38 64 30 46 36 30 C46 44 48 62 50 78 Z" fill="url(#lotusGrad)" opacity="0.85" />
+    <path d="M50 78 C62 64 70 46 64 30 C54 44 52 62 50 78 Z" fill="url(#lotusGrad)" opacity="0.85" />
+    <path d="M50 78 C28 70 18 52 24 38 C36 52 44 68 50 78 Z" fill="url(#lotusGrad)" opacity="0.7" />
+    <path d="M50 78 C72 70 82 52 76 38 C64 52 56 68 50 78 Z" fill="url(#lotusGrad)" opacity="0.7" />
+    <path d="M30 82 Q50 88 70 82 Q50 84 30 82 Z" fill="#fbcfe8" opacity="0.6" />
+  </g>
+
+  <!-- Typography -->
+  <text x="150" y="255" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="700" fill="#ffffff" letter-spacing="0.05em">LIBRARY EDITION</text>
+  <text x="150" y="278" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="600" fill="#c7d2fe" letter-spacing="0.1em">TWIRLING LOTUS</text>
+</svg>

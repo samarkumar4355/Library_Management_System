@@ -1,102 +1,88 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './BookForm.css';
 
 function BookForm({ editingBook, onSave, onCancel }) {
-  const [title, setTitle] = useState(editingBook ? editingBook.title : '');
-  const [author, setAuthor] = useState(editingBook ? editingBook.author : '');
-  const [isbn, setIsbn] = useState(editingBook ? editingBook.isbn : '');
-  const [category, setCategory] = useState(editingBook ? editingBook.category : '');
-  const [totalCopies, setTotalCopies] = useState(
-    editingBook && editingBook.totalCopies !== undefined ? String(editingBook.totalCopies) : ''
+  const [form, setForm] = useState(
+    editingBook || {
+      title: '',
+      author: '',
+      isbn: '',
+      category: '',
+      totalCopies: '',
+      availableCopies: '',
+    }
   );
-  const [availableCopies, setAvailableCopies] = useState(
-    editingBook && editingBook.availableCopies !== undefined ? String(editingBook.availableCopies) : ''
-  );
+
+  function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    const bookData = {
-      title,
-      author,
-      isbn,
-      category,
-      totalCopies: parseInt(totalCopies, 10),
-      availableCopies: parseInt(availableCopies, 10),
-    };
-
-    onSave(bookData);
+    onSave({
+      ...form,
+      totalCopies: parseInt(form.totalCopies, 10),
+      availableCopies: parseInt(form.availableCopies, 10),
+    });
   }
 
   return (
     <form onSubmit={handleSubmit} className="book-form">
       <h3>{editingBook ? 'Edit Book Record' : 'Add New Book'}</h3>
-
-      <label>Title</label>
       <input
-        type="text"
+        name="title"
         placeholder="Book Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={form.title}
+        onChange={handleChange}
         required
       />
-
-      <label>Author</label>
       <input
-        type="text"
-        placeholder="Author Name"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
+        name="author"
+        placeholder="Author"
+        value={form.author}
+        onChange={handleChange}
         required
       />
-
-      <label>ISBN</label>
       <input
-        type="text"
-        placeholder="Unique ISBN"
-        value={isbn}
-        onChange={(e) => setIsbn(e.target.value)}
+        name="isbn"
+        placeholder="ISBN"
+        value={form.isbn}
+        onChange={handleChange}
         required
       />
-
-      <label>Category</label>
       <input
-        type="text"
-        placeholder="e.g. Software Engineering"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        name="category"
+        placeholder="Category"
+        value={form.category}
+        onChange={handleChange}
         required
       />
-
       <div className="form-row">
-        <div>
-          <label>Total Copies</label>
-          <input
-            type="number"
-            min="0"
-            value={totalCopies}
-            onChange={(e) => setTotalCopies(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Available Copies</label>
-          <input
-            type="number"
-            min="0"
-            value={availableCopies}
-            onChange={(e) => setAvailableCopies(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          name="totalCopies"
+          type="number"
+          min="0"
+          placeholder="Total Copies"
+          value={form.totalCopies}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="availableCopies"
+          type="number"
+          min="0"
+          placeholder="Available Copies"
+          value={form.availableCopies}
+          onChange={handleChange}
+          required
+        />
       </div>
-
       <div className="btn-group">
-        <button type="submit" className="form-btn save-btn">
+        <button type="submit" className="btn-primary">
           {editingBook ? 'Update Book' : 'Add Book'}
         </button>
         {editingBook && (
-          <button type="button" onClick={onCancel} className="form-btn cancel-btn">
+          <button type="button" onClick={onCancel} className="btn-secondary">
             Cancel
           </button>
         )}

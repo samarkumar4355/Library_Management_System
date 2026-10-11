@@ -1,3 +1,121 @@
+.return-page {
+  max-width: 960px;
+  margin: 48px auto 72px;
+  padding: 0 24px;
+}
+
+.return-page h2 {
+  margin-bottom: 4px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+}
+
+/* The "please log in" box is narrower and centred */
+.return-page.empty-box {
+  max-width: 480px;
+  padding: 56px 32px;
+}
+
+.loans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.loan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  animation: fadeUp 0.4s ease-out both;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.loan-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.loan-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-main);
+}
+
+.loan-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.loan-card strong {
+  color: var(--text-main);
+}
+
+.loan-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.status-badge.issued {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.status-badge.returned {
+  color: var(--text-light);
+  background: var(--bg-soft);
+}
+
+.btn-return {
+  padding: 8px 18px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--success);
+  cursor: pointer;
+  transition: filter var(--transition), transform var(--transition);
+}
+
+.btn-return:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+/* Returned loans fade back a little so active loans stand out */
+.loan-card:has(.status-badge.returned) {
+  border-left-color: var(--border-strong);
+  opacity: 0.75;
+}
+
+@media (max-width: 640px) {
+  .return-page {
+    margin-top: 32px;
+    padding: 0 16px;
+  }
 .circulation-container {
   max-width: 520px;
   margin: 40px auto;

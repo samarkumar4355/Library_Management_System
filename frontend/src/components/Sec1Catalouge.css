@@ -1,14 +1,65 @@
 .catalogue {
-  padding: 32px 24px;
-  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 24px 72px;
 }
 
-.catalogue h3 {
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0 0 20px 0;
-  color: var(--text-h);
-  border-bottom: 2px solid var(--accent);
-  display: inline-block;
-  padding-bottom: 6px;
+.catalogue-header {
+  margin-bottom: 24px;
+}
+
+.catalogue-header h2 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+}
+
+.catalogue-header p {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+/* Search box with a magnifying-glass icon drawn as a background image */
+.search-input {
+  width: 100%;
+  max-width: 520px;
+  margin-bottom: 28px;
+  padding: 14px 18px 14px 46px;
+  font-size: 15px;
+  color: var(--text-main);
+  background: var(--bg-card)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='none' stroke='%239aa3b2' stroke-width='2' stroke-linecap='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E")
+    no-repeat 16px center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.search-input::placeholder {
+  color: var(--text-light);
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 22px;
+}
+
+@media (max-width: 640px) {
+  .catalogue {
+    padding: 36px 16px 56px;
+  }
+
+  .catalogue-header h2 {
+    font-size: 24px;
+  }
 }

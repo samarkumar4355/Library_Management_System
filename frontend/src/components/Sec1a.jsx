@@ -1,25 +1,35 @@
-import React from 'react';
 import './Sec1a.css';
 
-function Card({ books = [] }) {
-  if (books.length === 0) {
-    return <p>No books available in the catalogue.</p>;
-  }
+// Shows one book with its cover image and Borrow button
+function BookCard({ book, onBorrow }) {
+  const isAvailable = book.availableCopies > 0;
 
   return (
-    <div className="book-list">
-      {books.map((book, index) => (
-        <div key={book._id || book.isbn || index} className="book-card">
-          <h2>{book.title}</h2>
-          <p><strong>Author:</strong> {book.author}</p>
-          <p><strong>ISBN:</strong> {book.isbn}</p>
-          <p><strong>Category:</strong> {book.category}</p>
-          <p><strong>Total Copies:</strong> {book.totalCopies}</p>
-          <p><strong>Available Copies:</strong> {book.availableCopies}</p>
-        </div>
-      ))}
+    <div className="book-card">
+      <div className="book-cover-container">
+        <img
+          src={book.coverImage}
+          alt={book.title}
+          className="book-cover-img"
+        />
+      </div>
+
+      <span className="book-category">{book.category}</span>
+      <h3 className="book-title">{book.title}</h3>
+      <p className="book-author">by {book.author}</p>
+
+      <div className="book-meta">
+        <span className="copies-label">Available copies</span>
+        <span className={`copies-count ${isAvailable ? 'in-stock' : 'out-of-stock'}`}>
+          {book.availableCopies} / {book.totalCopies}
+        </span>
+      </div>
+
+      <button className="btn-borrow" onClick={() => onBorrow(book)} disabled={!isAvailable}>
+        {isAvailable ? 'Borrow' : 'Currently unavailable'}
+      </button>
     </div>
   );
 }
 
-export default Card;
+export default BookCard;

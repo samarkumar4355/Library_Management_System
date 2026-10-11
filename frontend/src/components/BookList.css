@@ -1,5 +1,7 @@
 .book-list-container {
   overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
 .admin-table {
@@ -9,15 +11,79 @@
 }
 
 .admin-table th {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border, #e5e7eb);
-  background: #f9fafb;
-  font-weight: 600;
+  padding: 12px 14px;
   text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-app);
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-table td {
+  padding: 14px;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr {
+  transition: background var(--transition);
+}
+
+.admin-table tbody tr:hover {
+  background: #fafbff;
+}
+
+.title-cell {
+  font-weight: 600;
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.action-btn {
+  margin-right: 8px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.edit-btn {
+  color: var(--primary);
+  background: var(--primary-light);
+  border: 1px solid transparent;
+}
+
+.edit-btn:hover {
+  color: #ffffff;
+  background: var(--primary);
+}
+
+.delete-btn {
+  color: var(--danger);
+  background: transparent;
+  border: 1px solid var(--danger-border);
+}
+
+.delete-btn:hover {
+  color: #ffffff;
+  background: var(--danger);
+  border-color: var(--danger);
 }
 
 .empty-books-text {
-  color: var(--muted, #6b7280);
-  font-style: italic;
-  padding: 12px 0;
+  padding: 32px 0;
+  text-align: center;
+  color: var(--text-muted);
 }
