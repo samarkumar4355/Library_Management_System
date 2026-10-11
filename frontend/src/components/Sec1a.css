@@ -10,6 +10,7 @@
   overflow: hidden;
   animation: fadeUp 0.4s ease-out both;
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  width: 100%;
 }
 
 /* Coloured strip along the top edge, like a book spine */
@@ -32,8 +33,8 @@
 
 .book-cover-container {
   width: 100%;
-  height: 240px;
-  background: linear-gradient(180deg, #f8fafc 0%, #eef2f6 100%);
+  height: 250px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
   border-radius: var(--radius-sm);
   overflow: hidden;
   display: flex;
@@ -41,6 +42,7 @@
   justify-content: center;
   margin-bottom: 16px;
   border: 1px solid var(--border);
+  position: relative;
 }
 
 .book-cover-img {
@@ -52,6 +54,47 @@
 
 .book-card:hover .book-cover-img {
   transform: scale(1.03);
+}
+
+.book-cover-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 18px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(129, 140, 248, 0.4), transparent 50%),
+    linear-gradient(135deg, #1e1b4b 0%, #312e81 55%, #4338ca 100%);
+}
+
+.fallback-lotus {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 12px;
+  opacity: 0.95;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
+.fallback-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 6px;
+  color: #ffffff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fallback-author {
+  font-size: 12px;
+  font-weight: 500;
+  color: #c7d2fe;
 }
 
 .book-category {

@@ -30,3 +30,4 @@ worker-configuration.d.ts
 *.njsproj
 *.sln
 *.sw?
+.vercel
