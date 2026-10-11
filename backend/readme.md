@@ -3,6 +3,11 @@
 A REST API for managing the library's book catalogue. It uses Express and MongoDB
 (through Mongoose).
 
+## Deployed Service
+
+- Base API URL: `https://library-management-system-2-7fc2.onrender.com/api`
+- Health check: `https://library-management-system-2-7fc2.onrender.com/health`
+
 ## Run locally
 
 From this directory:
