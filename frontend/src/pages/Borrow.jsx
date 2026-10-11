@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Borrow.css';
 import TransactionCard from '../components/TransactionCard';
+import { API_URL } from '../config';
 
 function Borrow() {
   const [bookId, setBookId] = useState('');
@@ -25,7 +26,7 @@ function Borrow() {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/circulation/issue', {
+      const response = await fetch(`${API_URL}/circulation/issue`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -106,14 +107,6 @@ function Borrow() {
 
         <button type="submit" className="circulation-btn">Issue Book</button>
       </form>
-import React from 'react';
-import './Borrow.css';
-
-function Borrow() {
-  return (
-    <div className="borrow-page">
-      <h2>Borrow Books</h2>
-      <p>This is the book borrowing page. Feature coming soon.</p>
     </div>
   );
 }

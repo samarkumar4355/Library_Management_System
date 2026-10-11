@@ -16,21 +16,12 @@ function AdminBooks() {
   useEffect(() => {
     async function loadBooks() {
       try {
-        const res = await fetch('http://localhost:5001/api/books');
+        const res = await fetch(`${API_URL}/books`);
         const data = await res.json();
         if (res.ok) setBooks(data);
       } catch {
         setMessage('Could not load books.');
         setIsError(true);
-        const response = await fetch(`${API_URL}/books`);
-        if (response.ok) {
-          const data = await response.json();
-          if (isMounted) {
-            setBooks(data);
-          }
-        }
-      } catch (err) {
-        console.error('Error fetching books:', err);
       }
     }
     loadBooks();
@@ -40,42 +31,9 @@ function AdminBooks() {
   async function sendRequest(url, method, bookData, successText) {
     try {
       const res = await fetch(url, {
-      const response = await fetch(`${API_URL}/books`);
-      if (response.ok) {
-        const data = await response.json();
-        setBooks(data);
-      }
-    } catch (err) {
-      console.error('Error refreshing books:', err);
-    }
-  }
-
-  async function handleSaveBook(bookData) {
-    setMessage('');
-    setIsError(false);
-
-    if (bookData.totalCopies < 0 || bookData.availableCopies < 0) {
-      setIsError(true);
-      setMessage('Copy counts cannot be negative.');
-      return;
-    }
-
-    if (bookData.availableCopies > bookData.totalCopies) {
-      setIsError(true);
-      setMessage('Available copies cannot exceed total copies.');
-      return;
-    }
-
-    try {
-      const url = editingBook
-        ? `${API_URL}/books/${editingBook._id}`
-        : `${API_URL}/books`;
-      const method = editingBook ? 'PUT' : 'POST';
-
-      const response = await fetch(url, {
         method: method,
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify(bookData),
+        body: bookData ? JSON.stringify(bookData) : null,
       });
       const data = await res.json();
       setMessage(res.ok ? successText : data.message);
@@ -92,31 +50,15 @@ function AdminBooks() {
 
   function handleSave(bookData) {
     if (editingBook) {
-      sendRequest(`http://localhost:5001/api/books/${editingBook._id}`, 'PUT', bookData, 'Book updated!');
+      sendRequest(`${API_URL}/books/${editingBook._id}`, 'PUT', bookData, 'Book updated!');
     } else {
-      sendRequest('http://localhost:5001/api/books', 'POST', bookData, 'Book added!');
+      sendRequest(`${API_URL}/books`, 'POST', bookData, 'Book added!');
     }
   }
 
   function handleDelete(id) {
     if (window.confirm('Delete this book?')) {
-      sendRequest(`http://localhost:5001/api/books/${id}`, 'DELETE', null, 'Book deleted!');
-    try {
-      const response = await fetch(`${API_URL}/books/${bookId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.message || 'Failed to delete book');
-      }
-
-      setMessage('Book deleted successfully.');
-      setIsError(false);
-      refreshBooks();
-    } catch (err) {
-      setIsError(true);
-      setMessage(err.message);
+      sendRequest(`${API_URL}/books/${id}`, 'DELETE', null, 'Book deleted!');
     }
   }
 
