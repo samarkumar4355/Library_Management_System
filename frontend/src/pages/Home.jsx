@@ -5,7 +5,6 @@ import Sec1Catalouge from '../components/Sec1Catalouge';
 
 function Home() {
   return (
-    <div>
     <div className="home-page">
       <Hero />
       <Sec1Catalouge />
